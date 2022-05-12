@@ -3,13 +3,15 @@
 
   <h1>Would You Rather?</h1>
 
-  <would-you-rather v-bind:question="WEEK10Question"
-                    v-bind:Answer1="WEEK10Answer1"
-                    v-bind:Answer2="WEEK10Answer2"
+  <would-you-rather v-for="question in questions"
+                    v-bind:key="question"
+                    v-bind:question="question.WEEK10Question"
+                    v-bind:Answer1="question.WEEK10Answer1"
+                    v-bind:Answer2="question.WEEK10Answer2"
                     v-on:option-changed="optionChanged"
   ></would-you-rather>
 
-                     <p>{{userSelectionMessage}}</p>
+                     <p v-for="Answer in userSelectionMessage">{{Answer}}</p>
 </div>
 </template>
 
@@ -22,35 +24,36 @@ export default {
     WouldYouRather
   },
   data() {
-    return{
-      questions:[
+    return {
+      questions: [
         {
-          id:0,
-          WEEK10Question1: 'Would you rather dance or sing?',
+          id: 0,
+          WEEK10Question: 'Would you rather dance or sing?',
           WEEK10Answer1: 'Dance',
           WEEK10Answer2: 'Sing',
           userSelectionMessage: ''
         },
         {
-          id:1,
-          WEEK10Question2: 'Would you rather have the ability to see 10 minutes into the future or 150 years into the future?',
+          id: 1,
+          WEEK10Question: 'Would you rather have the ability to see 10 minutes into the future or 150 years into the future?',
           WEEK10Answer1: 'See 10 minutes into the future',
           WEEK10Answer2: '150 years into future',
           userSelectionMessage: ''
         },
         {
-          id:2,
-          WEEK10Question3: 'Would you rather solve world hunger or global warming?',
+          id: 2,
+          WEEK10Question: 'Would you rather solve world hunger or global warming?',
           WEEK10Answer1: 'Solve world hunger',
           WEEK10Answer2: 'Solve global warming',
           userSelectionMessage: ''
         },
-    ]
-  }
+      ],
+      userSelectionMessage: []
+    }
   },
   methods:{
     optionChanged(choice){
-    this.userSelectionMessage=`Thanks You chose ${choice}!`
+    this.userSelectionMessage.push(`Thanks You chose ${choice}!`)
     }
 
   }

@@ -4,7 +4,7 @@
   <student-message v-bind:student="mostRecentStudent"></student-message>
 
   <student-table v-bind:students="students"
-                 v-on:student-arrived-or-left="studentsArrivedOrLeft"
+                 v-on:student-arrived-or-left="studentArrivedOrLeft"
                  v-on:delete-student="deleteStudent">
 
   </student-table>
@@ -47,7 +47,7 @@ export default {
       }
     },
     deleteStudent(student) {
-      this.students=this.student.filter(function (s){
+      this.students=this.students.filter(function (s){
         if(s != student){
           return true
         }
